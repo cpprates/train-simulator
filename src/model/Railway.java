@@ -1,20 +1,20 @@
 package model;
 
 public class Railway<E> {
-    private E element;
-    private Railway<E> next;
-    private Railway<E> previous;
+    protected Train element;
+    protected Railway<E> next;
+    protected Railway<E> previous;
 
-    public Railway(E element) {
-        this.element = element;
+    public Railway() {
+        element = null;
         next = previous = null;
     }
 
-    public E getElement() {
+    public Train getElement() {
         return element;
     }
 
-    public void setElement(E element) {
+    public void setElement(Train element) {
         this.element = element;
     }
 
@@ -32,6 +32,11 @@ public class Railway<E> {
 
     public void setPrevious(Railway<E> previous) {
         this.previous = previous;
+    }
+
+    @Override
+    public String toString() {
+        return (element != null) ? "" + element : "-";
     }
 
 }
