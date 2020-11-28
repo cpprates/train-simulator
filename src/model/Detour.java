@@ -28,7 +28,7 @@ public class Detour<E> extends Railway<E> {
 
     @Override
     public String toString() {
-        return (element != null) ? "{" + element + "}" : "|-|";
+        return (element != null) ? "{" + element + "}" : "[    ]";
     }
 
 }

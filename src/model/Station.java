@@ -11,4 +11,9 @@ public class Station<E> extends Railway<E> {
         return exiting;
     }
 
+    @Override
+    public String toString() {
+        return (element != null) ? "{" + element + "}" : "{    }";
+    }
+
 }
