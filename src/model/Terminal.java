@@ -1,7 +1,7 @@
 package model;
 
 public class Terminal<E> extends Railway<E> {
-    private static int trainID;
+    private static int trainID = 0;
 
     public Terminal() {
         buildTrain();

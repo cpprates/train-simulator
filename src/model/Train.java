@@ -43,4 +43,9 @@ public class Train {
         return wait;
     }
 
+    @Override
+    public String toString() {
+        return "🚂" + id;
+    }
+
 }
