@@ -8,7 +8,13 @@ public class Train {
     // sorteia a quantidade de passageiros iniciais
     public Train(int id) {
         this.id = id;
-        passengers = 10 + (int) (Math.random() * (50 - 10));
+        while (true) {
+            int even = 10 + (int) (Math.random() * (50 - 10));
+            if (even % 2 == 0) {
+                passengers = even;
+                break;
+            }
+        }
     }
 
     public int getPassengers() {

@@ -17,16 +17,17 @@ public class RailwayDAO<E> {
     }
 
     public void buildRailroad() {
-        for (int i = 0; i < 232; i++) {
+        int quant = 10 + (int) (Math.random() * (30 - 10));
+        for (int i = 0; i < quant; i++) {
             if (i == 0)
                 buildStart();
-            else if (i % 21 == 0 && i < 230) {
+            else if (i % 21 == 0 && i < (quant - 2)) {
                 buildStation(i);
                 buildDetour(i);
-            } else if (i < 231)
+            } else if (i < (quant - 1))
                 buildHalfway(i);
         }
-        buildDetour(232);
+        buildDetour(quant);
     }
 
     public void buildStart() {
@@ -122,7 +123,8 @@ public class RailwayDAO<E> {
 
         Railway<E> currA = a;
         Railway<E> currB = b;
-        System.out.println(this);
+
+        System.out.println("is it workin?" + this);
 
         while (currA != null || currB != null) {
             boolean onHold = false;
@@ -299,7 +301,14 @@ public class RailwayDAO<E> {
             ret += rail;
             rail = rail.getNext();
         }
+        printArray();
         return ret;
+    }
+
+    public void printArray() {
+        for (int i = 0; i < trains.length; i++) {
+            System.out.println(trains[i]);
+        }
     }
 
 }
