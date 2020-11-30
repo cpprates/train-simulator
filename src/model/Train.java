@@ -37,11 +37,11 @@ public class Train {
         return id;
     }
 
-    public static int getMaxCapacity() {
+    public int getMaxCapacity() {
         return MAX_CAPACITY;
     }
 
-    public static int getMinCapacity() {
+    public int getMinCapacity() {
         return MIN_CAPACITY;
     }
 

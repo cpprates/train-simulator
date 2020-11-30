@@ -15,6 +15,15 @@ public class Terminal<E> extends Railway<E> {
 
     @Override
     public String toString() {
-        return (this.element == null) ? (getNext() != null) ? "[A]" : "[B]" : "[" + this.element + "]";
+        if (this.element == null)
+            return "[A]";
+        else if (this.getNext() != null)
+            return "[B]";
+        else {
+            return "[ " + element + " ]";
+        }
+
+        // return (this.element == null) ? (this.getNext() != null) ? "[A]" + "[B]" : "[
+        // " + this.element + " ]";
     }
 }

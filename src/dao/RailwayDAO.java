@@ -14,6 +14,7 @@ public class RailwayDAO<E> {
     public RailwayDAO() {
         trains = new Train[21];
         buildRailroad();
+        // System.out.println(this.toString());
     }
 
     public void buildRailroad() {
@@ -22,6 +23,7 @@ public class RailwayDAO<E> {
             if (i == 0)
                 buildStart();
             else if (i % 21 == 0 && i < (quant - 2)) {
+                // buildDetour(i);
                 buildStation(i);
                 buildDetour(i);
             } else if (i < (quant - 1))
@@ -31,16 +33,19 @@ public class RailwayDAO<E> {
     }
 
     public void buildStart() {
-        a = new Terminal<E>();
-        b = new Terminal<E>();
+        a = new Terminal<>();
+        b = new Terminal<>();
         a.setNext(b); // vai de a para b
-        b.setNext(a); // vai de b para a
+        b.setPrevious(a); // vai de b para a
+
+        // System.out.println(a + "" + b);
     }
 
     public void buildHalfway(int pos) {
         Railway<E> previous = a;
         for (int i = 0; i < pos - 1; i++) {
             previous = previous.getNext();
+            // System.out.print(previous.toString());
         }
 
         Railway<E> piece = new Railway<>();
@@ -50,6 +55,8 @@ public class RailwayDAO<E> {
 
         previous.getNext().setPrevious(piece);
         previous.setNext(piece);
+
+        // System.out.print(piece.toString());
     }
 
     public void buildStation(int pos) {
@@ -65,6 +72,8 @@ public class RailwayDAO<E> {
 
         previous.getNext().setPrevious(newNode);
         previous.setNext(newNode);
+
+        // System.out.print(newNode.toString());
     }
 
     public void buildDetour(int pos) {
@@ -98,6 +107,7 @@ public class RailwayDAO<E> {
                 ((Detour<E>) newDet).getDetour().setPrevious(newDet);
                 ((Detour<E>) newDet).getDetour().setNext(newDet.getPrevious());
             }
+            // System.out.print(current.toString());
         }
     }
 
@@ -124,7 +134,7 @@ public class RailwayDAO<E> {
         Railway<E> currA = a;
         Railway<E> currB = b;
 
-        System.out.println("is it workin?" + this);
+        System.out.println("is it workin?" + this.toString());
 
         while (currA != null || currB != null) {
             boolean onHold = false;
@@ -141,8 +151,8 @@ public class RailwayDAO<E> {
                 if (!onHold && currB.getElement().getWait() == 0) {
                     // if estacao => embarque e desembarque de passageiros
                     if (currB instanceof Station) {
-                        ((Station<E>) currB).getExiting();
-                        ((Station<E>) currB).getBoarding();
+                        ((Station<E>) currB).exitingPassengers();
+                        ((Station<E>) currB).boardingPassengers();
                     }
                     // se nao tem espera, move para proximo pedaco trilho
                     if (currB.getElement().getWait() == 0) {
@@ -174,8 +184,9 @@ public class RailwayDAO<E> {
                 if (!onHold && currA.getElement().getWait() == 0) {
                     // se estacao
                     if (currA instanceof Station) {
-                        ((Station<E>) currA).getExiting();
-                        ((Station<E>) currA).getBoarding();
+                        ((Station<E>) currA).exitingPassengers();
+                        ;
+                        ((Station<E>) currA).boardingPassengers();
                     }
                     // sem tempo de espera
                     if (currA.getElement().getWait() == 0) {
@@ -295,14 +306,14 @@ public class RailwayDAO<E> {
 
     @Override
     public String toString() {
-        String ret = "";
-        Railway<E> rail = a;
-        while (rail != null) {
-            ret += rail;
-            rail = rail.getNext();
+        String s = "";
+
+        Railway<E> current = a; // head
+        while (current != null) {
+            s += current.getElement().toString() + "";
+            current = current.getNext();
         }
-        printArray();
-        return ret;
+        return s;
     }
 
     public void printArray() {
