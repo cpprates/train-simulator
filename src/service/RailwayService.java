@@ -32,6 +32,7 @@ public class RailwayService {
                 B = Boolean.parseBoolean(arr[1]);
             } else {
                 System.out.println("nao entrou no if");
+                break;
             }
         }
 

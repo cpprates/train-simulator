@@ -134,7 +134,7 @@ public class RailwayDAO<E> {
         Railway<E> currA = a;
         Railway<E> currB = b;
 
-        System.out.println("is it workin?" + this.toString());
+        System.out.println("is it workin?" + this);
 
         while (currA != null || currB != null) {
             boolean onHold = false;
@@ -309,8 +309,8 @@ public class RailwayDAO<E> {
         String s = "";
 
         Railway<E> current = a; // head
-        while (current != null) {
-            s += current.getElement().toString() + "";
+        while (current.getElement() != null) {
+            s += current.toString() + "";
             current = current.getNext();
         }
         return s;
